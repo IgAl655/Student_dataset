@@ -1,0 +1,46 @@
+# 1. Распределение GPA (числовой)
+plt.figure(figsize=(10,6))
+sns.histplot(data=dataflow, x='GPA_numeric', kde=True, bins=30)
+plt.title('Распределение GPA (0–4.0)')
+plt.xlabel('GPA')
+plt.show()
+<img width="1079" height="656" alt="image" src="https://github.com/user-attachments/assets/cbb84e1a-4cb5-461f-a277-c045f78ee9f5" />
+
+# 2. Средний GPA по полу
+plt.figure(figsize=(8,6))
+sns.barplot(data=dataflow, x='Gender', y='GPA_numeric')
+plt.title('Средний GPA по полу')
+plt.show()
+<img width="850" height="661" alt="image" src="https://github.com/user-attachments/assets/bef4eab8-0a6e-4958-8557-09e5cd4b336f" />
+
+# 3. Влияние образования родителей
+order = ['None', 'High School', 'Some College', "Bachelor's", "Master's", 'Doctorate']
+plt.figure(figsize=(10,6))
+sns.barplot(data=dataflow, x='ParentalEducation', y='GPA_numeric', order=order)
+plt.xticks(rotation=15)
+plt.title('Влияние образования родителей на GPA')
+plt.show()
+<img width="1066" height="688" alt="image" src="https://github.com/user-attachments/assets/cf4a3def-73c3-475f-8efc-7c45094f1bc8" />
+
+
+# 4. Часы учёбы → GPA
+plt.figure(figsize=(8,6))
+sns.boxplot(data=dataflow, x='study_hours', y='GPA_numeric', order=['low','medium','high'])
+plt.title('Зависимость GPA от времени на учёбу')
+plt.show()
+<img width="892" height="666" alt="image" src="https://github.com/user-attachments/assets/896e6a1c-707c-432e-85ab-42c85d7e55e8" />
+
+# 5. Буквенные оценки
+plt.figure(figsize=(9,6))
+sns.countplot(data=dataflow, x='GPA_letter', order=['A','B','C','D','F'])
+plt.title('Распределение буквенных оценок')
+plt.show()
+<img width="969" height="666" alt="image" src="https://github.com/user-attachments/assets/a29ef630-c28d-45f7-95d7-4918dcd05931" />
+
+# 6. Самый крутой — пол + образование родителей
+plt.figure(figsize=(10,6))
+sns.barplot(data=dataflow, x='ParentalEducation', y='GPA_numeric', hue='Gender', order=order)
+plt.xticks(rotation=15)
+plt.title('GPA по полу и образованию родителей')
+plt.legend(title='Пол')
+plt.show()
